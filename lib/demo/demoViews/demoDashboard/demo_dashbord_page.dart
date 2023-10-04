@@ -1,7 +1,7 @@
 import 'package:attendance_bloc/common/utils/common_constants.dart';
 import 'package:attendance_bloc/common/widget/custom_navbar_circle.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_page.dart';
-import 'package:attendance_bloc/demo/demoViews/demo_home_page.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_home_page.dart';
 import 'package:flutter/material.dart';
 
 class DemoDashboardPage extends StatefulWidget {

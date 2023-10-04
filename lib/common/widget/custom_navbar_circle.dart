@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 class CirclePainter extends CustomPainter {
   CirclePainter({
     this.color = AppColor.dark,
+    this.stroke = 5,
   });
   Color color;
+  double stroke;
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 5;
+      ..strokeWidth = stroke;
 
     canvas.drawArc(
         Rect.fromCenter(

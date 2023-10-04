@@ -5,7 +5,7 @@ import 'package:attendance_bloc/common/widget/custom_elevated_button.dart';
 import 'package:attendance_bloc/common/widget/custom_textfield.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_dashbord_page.dart';
-import 'package:attendance_bloc/demo/demoViews/demo_home_page.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

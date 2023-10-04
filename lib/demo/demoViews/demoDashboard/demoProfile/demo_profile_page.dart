@@ -1,4 +1,5 @@
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/utils/common_constants.dart';
@@ -140,7 +141,9 @@ class DemoProfilePage extends StatelessWidget {
                                   color: AppColor.dark,
                                 ),
                                 title: "User Profile",
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(DemoProfileDetailPage.routeName);
+                                },
                               ),
                               ProfileTile(
                                 leadingIcon: const Icon(

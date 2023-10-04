@@ -3,8 +3,9 @@ import 'package:attendance_bloc/common/views/auth/login_page.dart';
 import 'package:attendance_bloc/common/views/auth/verify_otp.dart';
 import 'package:attendance_bloc/common/views/introduction_page.dart';
 import 'package:attendance_bloc/common/views/splash_page.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_detail.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_dashbord_page.dart';
-import 'package:attendance_bloc/demo/demoViews/demo_home_page.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_home_page.dart';
 import 'package:flutter/material.dart';
 
 class AppColor {
@@ -24,8 +25,8 @@ var appRoute = {
   VerifyOtp.routeName: (_) => VerifyOtp(),
 
   //demo app route
-  DemoHomePage.routeName: (_) => DemoHomePage(),
   DemoDashboardPage.routeName: (_) => DemoDashboardPage(),
+  DemoProfileDetailPage.routeName: (_) => DemoProfileDetailPage(),
 };
 
 
