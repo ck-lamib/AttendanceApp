@@ -27,6 +27,7 @@ class _ClockDetailsState extends State<ClockDetails> {
     _clockModel = ClockDetailModel();
     _clockModel.is24HourFormat = (widget.is24hr) ?? true;
 
+    //initial value
     _dateTime = DateTime.now();
     _clockModel.hour = _dateTime.hour;
     _clockModel.minute = _dateTime.minute;
@@ -34,10 +35,12 @@ class _ClockDetailsState extends State<ClockDetails> {
     _clockModel.dayOfWeek = _dateTime.weekday.getDay();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      //value every one second
       _dateTime = DateTime.now();
       _clockModel.hour = _dateTime.hour;
       _clockModel.minute = _dateTime.minute;
       _clockModel.second = _dateTime.second;
+      _clockModel.dayOfWeek = _dateTime.weekday.getDay();
 
       setState(() {});
     });
@@ -51,8 +54,8 @@ class _ClockDetailsState extends State<ClockDetails> {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    // var height = MediaQuery.of(context).size.height;
+    // var width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Container(
@@ -116,6 +119,7 @@ class _ClockDetailsState extends State<ClockDetails> {
           textStyle: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontFamily: "Technology",
                 fontSize: 70,
+                letterSpacing: 5,
               ),
         ),
       );
@@ -128,6 +132,7 @@ class _ClockDetailsState extends State<ClockDetails> {
           textStyle: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontFamily: "Technology",
                 fontSize: 70,
+                letterSpacing: 5,
               ),
         ),
       );
@@ -143,6 +148,7 @@ class _ClockDetailsState extends State<ClockDetails> {
           textStyle: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontFamily: "Technology",
                 fontSize: 30,
+                letterSpacing: 2,
               ),
         ),
       );
@@ -156,7 +162,8 @@ class _ClockDetailsState extends State<ClockDetails> {
           // animationStyle: widget.digitAnimationStyle,
           textStyle: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontFamily: "Technology",
-                fontSize: 30,
+                fontSize: 28,
+                letterSpacing: 2,
               ),
         ),
       );
@@ -165,11 +172,12 @@ class _ClockDetailsState extends State<ClockDetails> {
       ? const SizedBox()
       : Container(
           alignment: AlignmentDirectional.center,
-          child: Text(
-            "${hh_12(_clockModel.hour)[1]}",
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+          child: AnimatedText(
+            text: "${hh_12(_clockModel.hour)[1]}",
+            textStyle: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontFamily: "Technology",
                   fontSize: 25,
+                  letterSpacing: 2,
                 ),
           ),
         );
@@ -195,14 +203,17 @@ hh_12(int hour) {
   String h12State = "AM";
   int newHour = hour;
 
-  if (newHour > 12) {
-    newHour = newHour - 12;
+  if (newHour >= 12) {
     h12State = "PM";
+    if (newHour > 12) {
+      newHour = newHour - 12;
+    }
   }
   sHour = newHour.toString().padLeft(2, '0');
 
-  times.add(sHour);
+  times.add(sHour == "00" ? "12" : sHour);
   times.add(h12State);
+
   return times;
 }
 

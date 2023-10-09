@@ -1,10 +1,15 @@
+import 'dart:math';
+
 import 'package:attendance_bloc/common/utils/common_constants.dart';
+import 'package:attendance_bloc/common/utils/extension.dart';
 import 'package:attendance_bloc/common/widget/activity_tile.dart';
 import 'package:attendance_bloc/common/widget/clock_detail.dart';
 import 'package:attendance_bloc/common/widget/feature_tile.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_leave_report.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_leave_request.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_notification.dart';
 import 'package:flutter/material.dart';
-import 'package:slide_digital_clock/slide_digital_clock.dart';
 
 class DemoHomePage extends StatelessWidget {
   static const String routeName = "/demo-home-page/";
@@ -14,7 +19,7 @@ class DemoHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: ParentScreen(
         child: SafeArea(
@@ -24,7 +29,7 @@ class DemoHomePage extends StatelessWidget {
               backgroundColor: Colors.transparent,
               elevation: 0,
               flexibleSpace: Padding(
-                padding: const EdgeInsets.only(left: 24, right: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -35,8 +40,7 @@ class DemoHomePage extends StatelessWidget {
                         children: [
                           Text(
                             "Welcome Back 👋",
-                            style:
-                                theme.textTheme.headlineLarge?.copyWith(color: AppColor.lightPink),
+                            style: theme.textTheme.headlineLarge?.copyWith(color: Colors.white),
                           ),
                           Text(
                             "Bimal Khatri !",
@@ -62,7 +66,9 @@ class DemoHomePage extends StatelessWidget {
                           color: AppColor.main),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(360),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(DemoNotificationPage.routeName);
+                        },
                         child: const Icon(
                           Icons.notifications_outlined,
                           color: AppColor.lightPink,
@@ -134,12 +140,28 @@ class DemoHomePage extends StatelessWidget {
                     ),
                     Text(
                       "Today's Activity",
-                      style: theme.textTheme.titleLarge?.copyWith(color: AppColor.pink),
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        color: AppColor.pink,
+                      ),
                     ),
                     SizedBox(
                       height: height * 0.03,
                     ),
-                    ActivityTile(),
+                    ActivityTile(
+                      title: "Last Check in time",
+                      time: DateTime.now().getDate(),
+                      buttonText: "Check out",
+                      buttonAction: null,
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    ActivityTile(
+                      title: "Last Check out time",
+                      time: DateTime.now().getDate(),
+                      buttonText: "Check In",
+                      buttonAction: null,
+                    ),
                     SizedBox(
                       height: height * 0.07,
                     ),
@@ -150,15 +172,36 @@ class DemoHomePage extends StatelessWidget {
                     SizedBox(
                       height: height * 0.03,
                     ),
-                    FeatureTile(),
+                    FeatureTile(
+                      title: "Leave Report",
+                      subtitle: "View all of yours tracked report",
+                      prefixIcon: Icons.analytics_outlined,
+                      onTap: () {
+                        Navigator.of(context).pushNamed(DemoLeaveReportPage.routeName);
+                      },
+                    ),
                     SizedBox(
                       height: height * 0.03,
                     ),
-                    FeatureTile(),
+                    FeatureTile(
+                      title: "Request Leave",
+                      subtitle: "Ask for leave request",
+                      prefixIcon: Icons.work_history_rounded,
+                      onTap: () {
+                        Navigator.of(context).pushNamed(DemoLeaveRequestPage.routeName);
+                      },
+                    ),
                     SizedBox(
                       height: height * 0.03,
                     ),
-                    FeatureTile(),
+                    FeatureTile(
+                      title: "View Members",
+                      subtitle: "View all of your organization members.",
+                      prefixIcon: Icons.groups_2_rounded,
+                      onTap: () {
+                        Navigator.of(context).pushNamed(DemoLeaveRequestPage.routeName);
+                      },
+                    ),
                   ],
                 ),
               ),

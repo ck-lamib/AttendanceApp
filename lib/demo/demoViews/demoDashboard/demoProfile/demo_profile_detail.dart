@@ -1,11 +1,9 @@
 import 'dart:io';
 
 import 'package:attendance_bloc/common/utils/validators.dart';
-import 'package:attendance_bloc/common/widget/custom_navbar_circle.dart';
 import 'package:attendance_bloc/common/widget/custom_outline_textfield.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:attendance_bloc/common/widget/pick_image.dart';
-import 'package:attendance_bloc/common/widget/snackbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/utils/common_constants.dart';
@@ -113,7 +111,6 @@ class _DemoProfileDetailPageState extends State<DemoProfileDetailPage> {
                                   alignment: Alignment.topRight,
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      CustomSnackBar.success(context: context);
                                       // CustomSnackbar();
                                       // if(isReadOnly){
 
@@ -322,40 +319,6 @@ class _DemoProfileDetailPageState extends State<DemoProfileDetailPage> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ProfileTile extends StatelessWidget {
-  const ProfileTile({
-    super.key,
-    required this.leadingIcon,
-    required this.title,
-    this.onTap,
-  });
-  final Widget leadingIcon;
-  final VoidCallback? onTap;
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    return ListTile(
-      onTap: onTap,
-      leading: leadingIcon,
-      title: Text(
-        title,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: theme.textTheme.titleSmall?.copyWith(
-          color: AppColor.dark,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      trailing: const Icon(
-        Icons.arrow_forward_ios_rounded,
-        color: AppColor.dark,
       ),
     );
   }

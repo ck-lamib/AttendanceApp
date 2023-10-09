@@ -30,44 +30,47 @@ class CustomOutlinedTextField extends StatelessWidget {
   final double? cursorHeight;
   final bool obscureText;
   final Iterable<String>? autofillHints;
+  final int? maxLines;
 
-  const CustomOutlinedTextField({
-    Key? key,
-    this.fillColor,
-    required this.hint,
-    this.preIconPath,
-    this.suffixIcon,
-    this.onValueChange,
-    this.controller,
-    this.validator,
-    required this.textInputAction,
-    this.textInputType,
-    this.border,
-    this.readOnly = false,
-    this.showError = true,
-    this.textCapitalization = TextCapitalization.sentences,
-    this.onTap,
-    this.onSubmitted,
-    this.autofocus = false,
-    this.maxCharacters,
-    this.focusNode,
-    this.labelText,
-    this.borderRadius = 15,
-    this.prefixIcon,
-    this.onEditing,
-    this.hintStyle,
-    // this.scrollPadding = const EdgeInsets.all(20.0),
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 20),
-    this.cursorHeight,
-    this.obscureText = false,
-    this.autofillHints,
-  }) : super(key: key);
+  const CustomOutlinedTextField(
+      {Key? key,
+      this.fillColor,
+      required this.hint,
+      this.preIconPath,
+      this.suffixIcon,
+      this.onValueChange,
+      this.controller,
+      this.validator,
+      required this.textInputAction,
+      this.textInputType,
+      this.border,
+      this.readOnly = false,
+      this.showError = true,
+      this.textCapitalization = TextCapitalization.sentences,
+      this.onTap,
+      this.onSubmitted,
+      this.autofocus = false,
+      this.maxCharacters,
+      this.focusNode,
+      this.labelText,
+      this.borderRadius = 15,
+      this.prefixIcon,
+      this.onEditing,
+      this.hintStyle,
+      // this.scrollPadding = const EdgeInsets.all(20.0),
+      this.contentPadding = const EdgeInsets.symmetric(horizontal: 20),
+      this.cursorHeight,
+      this.obscureText = false,
+      this.autofillHints,
+      this.maxLines = 1})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return TextFormField(
       // scrollPadding: scrollPadding,
+
       focusNode: focusNode,
       maxLength: maxCharacters,
       autofocus: autofocus!,
@@ -77,7 +80,7 @@ class CustomOutlinedTextField extends StatelessWidget {
       readOnly: (readOnly == null) ? false : readOnly!,
       keyboardType: textInputType,
       textInputAction: textInputAction,
-      maxLines: 1,
+      maxLines: maxLines,
       validator: (validator != null) ? validator : null,
       controller: (controller != null) ? controller : null,
       onEditingComplete: onEditing,

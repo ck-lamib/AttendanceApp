@@ -149,6 +149,8 @@ class ShortCutTile extends StatelessWidget {
             // border: Border.all(color: AppColor.dark),
             color: AppColor.dark),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),

@@ -1,14 +1,13 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ParentScreen extends StatelessWidget {
   const ParentScreen({
     super.key,
     required this.child,
+    this.appBar,
   });
   final Widget child;
+  final PreferredSizeWidget? appBar;
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +63,12 @@ class ParentScreen extends StatelessWidget {
           //         ),
           //       ),
           //     )),
-          Positioned.fill(child: child),
-
-          // child,
+          Positioned.fill(
+              child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: appBar,
+            body: child,
+          )),
         ],
       ),
     );

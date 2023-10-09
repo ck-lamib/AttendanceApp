@@ -1,4 +1,5 @@
 import 'package:attendance_bloc/common/utils/common_constants.dart';
+import 'package:attendance_bloc/common/utils/extension.dart';
 import 'package:flutter/material.dart';
 
 class ActivityTile extends StatelessWidget {
@@ -31,14 +32,14 @@ class ActivityTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title ?? "Last Check in Time",
+                title ?? "Check in for attendance",
                 style: theme.textTheme.bodyMedium?.copyWith(color: AppColor.lightPink),
               ),
               const SizedBox(
                 height: 5,
               ),
               Text(
-                time ?? DateTime.now().toString().split(" ").first,
+                time ?? DateTime.now().getDate(),
                 style: theme.textTheme.titleMedium?.copyWith(
                   color: AppColor.lightPink,
                   fontWeight: FontWeight.w800,
@@ -46,18 +47,32 @@ class ActivityTile extends StatelessWidget {
               ),
             ],
           ),
-          ElevatedButton(
-            onPressed: buttonAction ?? () {},
-            style: ElevatedButton.styleFrom(
-                elevation: 5,
-                backgroundColor: AppColor.pink,
-                // backgroundColor: ,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
-            child: Text(
-              buttonText ?? "Check out",
-              style: theme.textTheme.bodyMedium?.copyWith(color: AppColor.dark),
-            ),
-          )
+          buttonAction == null
+              ? ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      elevation: 5,
+                      backgroundColor: AppColor.pink.withOpacity(0.5),
+                      // backgroundColor: ,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+                  child: Text(
+                    buttonText ?? "Check In",
+                    style:
+                        theme.textTheme.bodyMedium?.copyWith(color: AppColor.dark.withOpacity(0.8)),
+                  ),
+                )
+              : ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      elevation: 5,
+                      backgroundColor: AppColor.pink,
+                      // backgroundColor: ,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+                  child: Text(
+                    buttonText ?? "Check In",
+                    style: theme.textTheme.bodyMedium?.copyWith(color: AppColor.dark),
+                  ),
+                ),
         ],
       ),
     );

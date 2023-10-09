@@ -1,5 +1,4 @@
 import 'package:attendance_bloc/common/utils/common_constants.dart';
-import 'package:attendance_bloc/common/views/splash_page.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_dashbord_page.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +48,7 @@ class AttendanceApp extends StatelessWidget {
               )),
       debugShowCheckedModeBanner: false,
       home: const DemoDashboardPage(),
-      routes: appRoute,
+      onGenerateRoute: generateRoute,
     );
   }
 }

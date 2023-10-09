@@ -1,4 +1,5 @@
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_change_password.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_detail.dart';
 import 'package:flutter/material.dart';
 
@@ -151,7 +152,11 @@ class DemoProfilePage extends StatelessWidget {
                                   color: AppColor.dark,
                                 ),
                                 title: "Change Password",
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                    DemoChangePasswordPage.routeName,
+                                  );
+                                },
                               ),
                               ProfileTile(
                                 leadingIcon: const Icon(

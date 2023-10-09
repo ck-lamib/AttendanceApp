@@ -1,67 +1,50 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
 class CustomSnackBar {
-  static success({
+  static show({
     required BuildContext context,
+    required CustomSnackbarType customSnackbarType,
+    String? title,
+    String? message,
+    int duration = 3,
   }) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("hello"),
-        duration: Duration(seconds: 3),
-        behavior: SnackBarBehavior.floating,
-        dismissDirection: DismissDirection.startToEnd,
-        margin: EdgeInsets.all(15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-      ),
-    );
+    return Flushbar(
+      title: title ??
+          (customSnackbarType == CustomSnackbarType.success
+              ? "Successful"
+              : customSnackbarType == CustomSnackbarType.error
+                  ? "Error!"
+                  : "Info"),
+      message: message ??
+          (customSnackbarType == CustomSnackbarType.success
+              ? "The action was successful!"
+              : customSnackbarType == CustomSnackbarType.error
+                  ? "Unknown error! Please try again later!"
+                  : "Something went wrong"),
+      duration: Duration(seconds: duration),
+      margin: const EdgeInsets.all(15),
+      icon: customSnackbarType == CustomSnackbarType.success
+          ? const Icon(Icons.check_circle_outline_rounded)
+          : customSnackbarType == CustomSnackbarType.error
+              ? const Icon(Icons.error_outline_rounded)
+              : const Icon(Icons.info_outline_rounded),
+      borderRadius: BorderRadius.circular(15),
+      dismissDirection: FlushbarDismissDirection.VERTICAL,
+      flushbarPosition: FlushbarPosition.TOP,
+      flushbarStyle: FlushbarStyle.FLOATING,
+      backgroundColor: customSnackbarType.color,
+    )..show(context);
   }
 }
 
-class CustomSnackbar extends StatefulWidget {
-  const CustomSnackbar({super.key});
+enum CustomSnackbarType {
+  error(Colors.red),
 
-  @override
-  State<CustomSnackbar> createState() => _CustomSnackbarState();
-}
+  success(Colors.green),
+  info(Colors.deepOrangeAccent);
 
-class _CustomSnackbarState extends State<CustomSnackbar> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> animation;
+  final Color color;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: Duration(seconds: 0),
-      vsync: this,
-    );
-    animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut)
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _controller.reverse();
-        }
-      });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SnackBar(
-      content: Text("hello"),
-      duration: Duration(seconds: 3),
-      behavior: SnackBarBehavior.floating,
-      dismissDirection: DismissDirection.up,
-      margin: EdgeInsets.all(15),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-    );
-  }
+  const CustomSnackbarType(this.color);
 }

@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class FeatureTile extends StatelessWidget {
   const FeatureTile({
     super.key,
-    this.title,
-    this.subtitle,
-    this.prefixIcon,
+    required this.title,
+    required this.subtitle,
+    required this.prefixIcon,
     this.onTap,
   });
-  final String? title;
-  final String? subtitle;
-  final IconData? prefixIcon;
+  final String title;
+  final String subtitle;
+  final IconData prefixIcon;
   final VoidCallback? onTap;
 
   @override
@@ -36,15 +36,15 @@ class FeatureTile extends StatelessWidget {
             // foregroundColor: AppColors.secondaryColor,
             backgroundColor: Colors.transparent,
             child: Icon(
-              prefixIcon ?? Icons.desktop_windows_rounded,
+              prefixIcon,
               color: AppColor.dark,
             )),
         title: Text(
-          title ?? "Leave Report",
+          title,
           style: theme.textTheme.titleMedium?.copyWith(color: AppColor.dark),
         ),
         subtitle: Text(
-          subtitle ?? "View all of yours tracked report",
+          subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.bodyMedium?.copyWith(color: AppColor.dark),

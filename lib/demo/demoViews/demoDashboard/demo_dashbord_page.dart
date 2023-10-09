@@ -1,5 +1,7 @@
+import 'dart:math';
+
 import 'package:attendance_bloc/common/utils/common_constants.dart';
-import 'package:attendance_bloc/common/widget/custom_navbar_circle.dart';
+import 'package:attendance_bloc/common/widget/pick_image.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_page.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_home_page.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +19,12 @@ class _DemoDashboardPageState extends State<DemoDashboardPage> {
   PageController pageController = PageController();
   var pageList = [
     const DemoHomePage(),
-    DemoProfilePage(),
+    const DemoProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: PageView(
         controller: pageController,
@@ -42,33 +46,122 @@ class _DemoDashboardPageState extends State<DemoDashboardPage> {
               tooltip: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_4_rounded),
-              label: "Profile",
-              tooltip: "Profile",
+              icon: Icon(Icons.settings),
+              label: "Setting",
+              tooltip: "Setting",
             ),
           ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: IconButton(
-          onPressed: () {},
-          icon: ConstrainedBox(
-            constraints:
-                const BoxConstraints(maxHeight: 100, minHeight: 20, minWidth: 20, maxWidth: 100),
-            child: CustomPaint(
-              painter: CirclePainter(),
-              child: Container(
-                padding: const EdgeInsets.all(5),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xffFBE9FF),
+      floatingActionButton: TransformCrossIcon()
+      // PopUpNavigation()
+      ,
+    );
+  }
+}
+
+class TransformCrossIcon extends StatefulWidget {
+  const TransformCrossIcon({super.key});
+
+  @override
+  State<TransformCrossIcon> createState() => _TransformCrossIconState();
+}
+
+class _TransformCrossIconState extends State<TransformCrossIcon>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+    animation = Tween<double>(begin: 0, end: pi / 4).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    return IconButton(
+        onPressed: () {
+          _controller.forward();
+          var numberDialog = Container(
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height * 0.15,
+              // left: width * 0.22,
+              // right: width * 0.22,
+            ),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Material(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: const Icon(
-                  Icons.add,
-                  color: AppColor.main,
-                  size: 40,
+                color: Colors.white,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    // minHeight: 20,
+                    maxHeight: width * 0.55,
+                    // minWidth: 20,
+                    maxWidth: width * 0.55,
+                  ),
+                  child: GridView.count(
+                    shrinkWrap: true,
+                    primary: false,
+                    padding: const EdgeInsets.all(20),
+                    crossAxisSpacing: width * 0.03,
+                    mainAxisSpacing: width * 0.03,
+                    crossAxisCount: 2,
+                    children: const [
+                      ShortCutTile(icon: Icon(Icons.abc), iconName: "Abc"),
+                      ShortCutTile(icon: Icon(Icons.abc), iconName: "Abc"),
+                      ShortCutTile(icon: Icon(Icons.abc), iconName: "Abc"),
+                      ShortCutTile(icon: Icon(Icons.abc), iconName: "Abc"),
+                    ],
+                  ),
                 ),
               ),
             ),
-          )),
-    );
+          );
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return numberDialog;
+            },
+          ).whenComplete(() => _controller.reverse());
+        },
+        icon: ConstrainedBox(
+          constraints:
+              const BoxConstraints(maxHeight: 100, minHeight: 20, minWidth: 20, maxWidth: 100),
+          child: Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: const Color(0xffFBE9FF),
+              border: Border.all(width: 1, color: AppColor.dark),
+              // boxShadow: [BoxShadow(color: AppColor.dark, spreadRadius: 5, blurRadius: 10)],
+            ),
+            child: AnimatedBuilder(
+                animation: _controller,
+                builder: ((context, child) {
+                  return Transform.rotate(
+                    angle: animation.value,
+                    child: const Icon(
+                      Icons.add,
+                      color: AppColor.main,
+                      size: 40,
+                    ),
+                  );
+                })),
+          ),
+        ));
   }
 }
