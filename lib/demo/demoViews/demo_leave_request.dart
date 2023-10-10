@@ -1,3 +1,4 @@
+import 'package:attendance_bloc/common/utils/image_path.dart';
 import 'package:attendance_bloc/common/utils/validators.dart';
 import 'package:attendance_bloc/common/widget/custom_dropdown_textfield.dart';
 import 'package:attendance_bloc/common/widget/custom_outline_textfield.dart';
@@ -61,7 +62,7 @@ class _DemoLeaveRequestPageState extends State<DemoLeaveRequestPage> {
                     ],
                   ),
                   child: Image.asset(
-                    "assets/aarambahcv.jpeg",
+                    ImagePath.bannerImagePath,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -282,7 +283,7 @@ class _DemoLeaveRequestPageState extends State<DemoLeaveRequestPage> {
                                     foregroundColor: AppColor.pink,
                                     backgroundColor: AppColor.main,
                                     backgroundImage: const AssetImage(
-                                      "assets/userAvatar.jpeg",
+                                      ImagePath.userAvatarImagePath,
                                     ),
                                     maxRadius: width * 0.12,
                                   ),

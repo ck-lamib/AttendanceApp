@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class ForgetPassword extends StatefulWidget {
   static const String routeName = "/forget-password/";
-  ForgetPassword({super.key});
+  const ForgetPassword({super.key});
 
   @override
   State<ForgetPassword> createState() => _ForgetPasswordState();
@@ -89,10 +89,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                               ),
                               validator: Validators.checkFieldEmpty,
                               onTap: () {
-                                Future.delayed(Duration(seconds: 3), () {
+                                Future.delayed(const Duration(seconds: 3), () {
                                   setState(() {
                                     isLoaded = !isLoaded;
-                                    print(isLoaded);
+
                                     Navigator.of(context).pop();
                                     isLoaded
                                         ? showDialog(
@@ -120,7 +120,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                         : null;
                                   });
                                 });
-                                print(isLoaded);
 
                                 showDialog(
                                     context: context,

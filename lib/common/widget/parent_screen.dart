@@ -1,3 +1,4 @@
+import 'package:attendance_bloc/common/utils/image_path.dart';
 import 'package:flutter/material.dart';
 
 class ParentScreen extends StatelessWidget {
@@ -17,8 +18,8 @@ class ParentScreen extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              "assets/sample.png",
-              fit: BoxFit.fitWidth,
+              ImagePath.backgroundImagePath,
+              fit: BoxFit.fill,
             ),
           ),
           // SizedBox(

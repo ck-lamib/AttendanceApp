@@ -1,4 +1,5 @@
 import 'package:attendance_bloc/common/utils/common_constants.dart';
+import 'package:attendance_bloc/common/utils/image_path.dart';
 import 'package:attendance_bloc/common/views/auth/login_page.dart';
 import 'package:attendance_bloc/common/widget/introduction_tile.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
@@ -16,17 +17,17 @@ class IntroductionPage extends StatefulWidget {
 class _IntroductionPageState extends State<IntroductionPage> {
   final List introList = [
     IntroductionTile(
-      image: Image.asset("assets/introduction.png"),
+      image: Image.asset(ImagePath.introductionPageImagePath),
       introductionScreenTitle: "Make Attendance",
       introductionScreenDesc: "Check in or check out daily  through our app.",
     ),
     IntroductionTile(
-      image: Image.asset("assets/introduction.png"),
+      image: Image.asset(ImagePath.introductionPageImagePath),
       introductionScreenTitle: "Make Attendance2",
       introductionScreenDesc: "Check in or check out daily  through our app.",
     ),
     IntroductionTile(
-      image: Image.asset("assets/introduction.png"),
+      image: Image.asset(ImagePath.introductionPageImagePath),
       introductionScreenTitle: "Make Attendance3",
       introductionScreenDesc: "Check in or check out daily  through our app.",
     ),
@@ -90,9 +91,6 @@ class _IntroductionPageState extends State<IntroductionPage> {
       )),
       floatingActionButton: GestureDetector(
         onTap: () {
-          print(pageController.page);
-          print(introList.length - 1);
-
           if (pageController.page! >= (introList.length - 1)) {
             Navigator.of(context).pushNamedAndRemoveUntil(LoginPage.routeName, (route) => false);
           } else {

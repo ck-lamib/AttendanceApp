@@ -80,10 +80,11 @@ class CustomDropdownTextField extends StatelessWidget {
           ),
         ),
         iconStyleData: const IconStyleData(
-          icon: Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: AppColor.dark,
-          ),
+          iconEnabledColor: AppColor.dark,
+          // icon: Icon(
+          //   Icons.keyboard_arrow_down_rounded,
+          //   color: AppColor.dark,
+          // ),
         ),
         decoration: InputDecoration(
           contentPadding: contentPadding,

@@ -1,30 +1,24 @@
 import 'dart:io';
 
+import 'package:attendance_bloc/common/utils/common_constants.dart';
 import 'package:attendance_bloc/common/utils/image_path.dart';
 import 'package:attendance_bloc/common/utils/validators.dart';
-import 'package:attendance_bloc/common/widget/custom_app_bar.dart';
+import 'package:attendance_bloc/common/widget/custom_dropdown_textfield.dart';
 import 'package:attendance_bloc/common/widget/custom_outline_textfield.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:attendance_bloc/common/widget/pick_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../common/utils/common_constants.dart';
-
-class DemoProfileDetailPage extends StatefulWidget {
-  static const String routeName = "/demo-detail-page/";
-  const DemoProfileDetailPage({super.key});
+class MemberDetailPage extends StatefulWidget {
+  static const String routeName = "/member-detail-page/";
+  const MemberDetailPage({super.key});
 
   @override
-  State<DemoProfileDetailPage> createState() => _DemoProfileDetailPageState();
+  State<MemberDetailPage> createState() => _MemberDetailPageState();
 }
 
-class _DemoProfileDetailPageState extends State<DemoProfileDetailPage> {
-  bool isReadOnly = true;
-  toogleReadonly() {
-    isReadOnly = !isReadOnly;
-    setState(() {});
-  }
-
+class _MemberDetailPageState extends State<MemberDetailPage> {
+  String? itemValue;
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
@@ -139,7 +133,6 @@ class _DemoProfileDetailPageState extends State<DemoProfileDetailPage> {
                                     CustomOutlinedTextField(
                                       controller: TextEditingController(text: "Bimal Khatri"),
                                       hint: "Full Name",
-                                      readOnly: isReadOnly,
                                       textInputType: TextInputType.name,
                                       textInputAction: TextInputAction.next,
                                       autofillHints: const [AutofillHints.name],
@@ -156,7 +149,6 @@ class _DemoProfileDetailPageState extends State<DemoProfileDetailPage> {
                                       controller:
                                           TextEditingController(text: "bimal@aarambhait.com"),
                                       hint: "Email",
-                                      readOnly: isReadOnly,
                                       textInputType: TextInputType.emailAddress,
                                       textInputAction: TextInputAction.next,
                                       autofillHints: const [AutofillHints.email],
@@ -171,9 +163,8 @@ class _DemoProfileDetailPageState extends State<DemoProfileDetailPage> {
                                     ),
                                     CustomOutlinedTextField(
                                       controller: TextEditingController(
-                                          text: "Aarambha It Research Centerasdf lskdf las"),
+                                          text: "Aarambha It Research Center"),
                                       hint: "Your Organization",
-                                      readOnly: true,
                                       textInputType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
                                       autofillHints: const [AutofillHints.organizationName],
@@ -187,21 +178,60 @@ class _DemoProfileDetailPageState extends State<DemoProfileDetailPage> {
                                       height: height * 0.03,
                                     ),
                                     ConstrainedBox(
-                                      constraints: BoxConstraints(maxWidth: width * 0.5),
-                                      child: CustomOutlinedTextField(
-                                        controller: TextEditingController(text: "Developer"),
-                                        hint: "Role",
-                                        readOnly: true,
-                                        textInputType: TextInputType.text,
-                                        textInputAction: TextInputAction.next,
-                                        autofillHints: const [AutofillHints.jobTitle],
-                                        prefixIcon: const Icon(
-                                          Icons.badge_rounded,
-                                          color: AppColor.dark,
+                                        constraints: BoxConstraints(maxWidth: width * 0.6),
+                                        child: CustomDropdownTextField(
+                                          dropDownItemLists: const [
+                                            DropdownMenuItem(
+                                              value: "Admin",
+                                              child: Text("Admin"),
+                                            ),
+                                            DropdownMenuItem(
+                                              value: "Raper",
+                                              child: Text("Raper"),
+                                            ),
+                                            DropdownMenuItem(
+                                              value: "Developer",
+                                              child: Text("Developer"),
+                                            ),
+                                            DropdownMenuItem(
+                                              value: "Graphic Designer",
+                                              child: Text("Graphic Designer"),
+                                            ),
+                                            DropdownMenuItem(
+                                              value: "Analysist",
+                                              child: Text("Analysist"),
+                                            ),
+                                            DropdownMenuItem(
+                                              value: "Other",
+                                              child: Text("Other"),
+                                            ),
+                                          ],
+                                          itemValue: itemValue,
+                                          hint: "Role",
+                                          prefixIcon: const Icon(
+                                            Icons.badge_rounded,
+                                            color: AppColor.dark,
+                                          ),
+                                          onValueChange: (value) {
+                                            itemValue = value;
+                                            setState(() {});
+                                          },
+                                          validator: Validators.checkFieldEmpty,
+                                        )
+
+                                        // CustomOutlinedTextField(
+                                        //   controller: TextEditingController(text: "Developer"),
+                                        //   hint: "Role",
+                                        //   textInputType: TextInputType.text,
+                                        //   textInputAction: TextInputAction.next,
+                                        //   autofillHints: const [AutofillHints.jobTitle],
+                                        //   prefixIcon: const Icon(
+                                        //     Icons.badge_rounded,
+                                        //     color: AppColor.dark,
+                                        //   ),
+                                        //   validator: Validators.checkEmailField,
+                                        // ),
                                         ),
-                                        validator: Validators.checkFieldEmpty,
-                                      ),
-                                    ),
                                   ],
                                 )
                               ],
@@ -212,101 +242,68 @@ class _DemoProfileDetailPageState extends State<DemoProfileDetailPage> {
                             left: width * 0.05,
                             child: Stack(
                               alignment: Alignment.center,
-                              children: isReadOnly
-                                  ? [
-                                      // CircleAvatar(
-                                      //   foregroundColor: AppColor.pink,
-                                      //   backgroundColor: AppColor.main,
-                                      //   maxRadius: width * 0.15,
-                                      //   minRadius: width * 0.1,
-                                      //   child: Icon(
-                                      //     Icons.person,
-                                      //     size: width * 0.15,
-                                      //   ),
-                                      // ),
+                              children: [
+                                // CircleAvatar(
+                                //   foregroundColor: AppColor.pink,
+                                //   backgroundColor: AppColor.main,
+                                //   maxRadius: width * 0.15,
+                                //   minRadius: width * 0.1,
+                                //   child: Icon(
+                                //     Icons.person,
+                                //     size: width * 0.15,
+                                //   ),
+                                // ),
 
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                            color: AppColor.dark,
-                                            width: 3,
-                                          ),
-                                        ),
-                                        child: CircleAvatar(
-                                          foregroundColor: AppColor.pink,
-                                          backgroundColor: AppColor.main,
-                                          backgroundImage: const AssetImage(
-                                            ImagePath.userAvatarImagePath,
-                                          ),
-                                          maxRadius: width * 0.12,
-                                        ),
+                                GestureDetector(
+                                  onTap: () async {
+                                    File? file = await ImageService().pickAndCropImage(context);
+                                    print(file);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: AppColor.dark,
+                                        width: 3,
                                       ),
-                                    ]
-                                  : [
-                                      // CircleAvatar(
-                                      //   foregroundColor: AppColor.pink,
-                                      //   backgroundColor: AppColor.main,
-                                      //   maxRadius: width * 0.15,
-                                      //   minRadius: width * 0.1,
-                                      //   child: Icon(
-                                      //     Icons.person,
-                                      //     size: width * 0.15,
-                                      //   ),
-                                      // ),
-
-                                      GestureDetector(
-                                        onTap: () async {
-                                          File? file =
-                                              await ImageService().pickAndCropImage(context);
-                                          print(file);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            border: Border.all(
-                                              color: AppColor.dark,
-                                              width: 3,
-                                            ),
-                                          ),
-                                          child: CircleAvatar(
-                                            foregroundColor: AppColor.pink,
-                                            backgroundColor: AppColor.main,
-                                            backgroundImage: const AssetImage(
-                                              ImagePath.userAvatarImagePath,
-                                            ),
-                                            maxRadius: width * 0.12,
-                                          ),
-                                        ),
+                                    ),
+                                    child: CircleAvatar(
+                                      foregroundColor: AppColor.pink,
+                                      backgroundColor: AppColor.main,
+                                      backgroundImage: const AssetImage(
+                                        ImagePath.userAvatarImagePath,
                                       ),
-                                      Positioned(
-                                        bottom: width * 0.02,
-                                        right: width * 0.015,
-                                        child: GestureDetector(
-                                          onTap: () async {
-                                            File? file =
-                                                await ImageService().pickAndCropImage(context);
-                                            print(file);
-                                          },
-                                          child: Container(
-                                            // padding: EdgeInsets.all(3),
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: AppColor.dark,
-                                                width: 3,
-                                              ),
-                                              shape: BoxShape.circle,
-                                              color: AppColor.main,
-                                            ),
-                                            child: Icon(
-                                              Icons.camera,
-                                              size: width * 0.04,
-                                              color: AppColor.pink,
-                                            ),
-                                          ),
+                                      maxRadius: width * 0.12,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: width * 0.02,
+                                  right: width * 0.015,
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      File? file = await ImageService().pickAndCropImage(context);
+                                      print(file);
+                                    },
+                                    child: Container(
+                                      // padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColor.dark,
+                                          width: 3,
                                         ),
+                                        shape: BoxShape.circle,
+                                        color: AppColor.main,
                                       ),
-                                    ],
+                                      child: Icon(
+                                        Icons.camera,
+                                        size: width * 0.04,
+                                        color: AppColor.pink,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],

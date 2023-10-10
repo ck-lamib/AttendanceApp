@@ -1,3 +1,4 @@
+import 'package:attendance_bloc/common/utils/image_path.dart';
 import 'package:attendance_bloc/common/views/introduction_page.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       body: Center(
         child: ParentScreen(
-          child: Center(child: Image.asset("assets/attendanceLogo.png")),
+          child: Center(child: Image.asset(ImagePath.splashImagePath)),
         ),
       ),
     );

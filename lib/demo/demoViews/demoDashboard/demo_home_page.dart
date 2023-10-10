@@ -9,6 +9,7 @@ import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_leave_report.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_leave_request.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_notification.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_view_members.dart';
 import 'package:flutter/material.dart';
 
 class DemoHomePage extends StatelessWidget {
@@ -199,7 +200,7 @@ class DemoHomePage extends StatelessWidget {
                       subtitle: "View all of your organization members.",
                       prefixIcon: Icons.groups_2_rounded,
                       onTap: () {
-                        Navigator.of(context).pushNamed(DemoLeaveRequestPage.routeName);
+                        Navigator.of(context).pushNamed(DemoViewMember.routeName);
                       },
                     ),
                   ],

@@ -3,12 +3,15 @@ import 'package:attendance_bloc/common/views/auth/login_page.dart';
 import 'package:attendance_bloc/common/views/auth/verify_otp.dart';
 import 'package:attendance_bloc/common/views/introduction_page.dart';
 import 'package:attendance_bloc/common/views/splash_page.dart';
+import 'package:attendance_bloc/common/widget/member_detail_page.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_change_password.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_detail.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_view_organization.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_dashbord_page.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_leave_report.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_leave_request.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_notification.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_view_members.dart';
 import 'package:flutter/material.dart';
 
 class AppColor {
@@ -39,7 +42,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //common app route
     case SplashPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => SplashPage(),
+        builder: (_) => const SplashPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -47,7 +50,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case IntroductionPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => IntroductionPage(),
+        builder: (_) => const IntroductionPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -55,7 +58,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case LoginPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => LoginPage(),
+        builder: (_) => const LoginPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -63,7 +66,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case ForgetPassword.routeName:
       return MaterialPageRoute(
-        builder: (_) => ForgetPassword(),
+        builder: (_) => const ForgetPassword(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -77,11 +80,19 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           arguments: settings.arguments,
         ),
       );
+    case MemberDetailPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const MemberDetailPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
 
     //demo app route
     case DemoDashboardPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => DemoDashboardPage(),
+        builder: (_) => const DemoDashboardPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -89,7 +100,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case DemoProfileDetailPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => DemoProfileDetailPage(),
+        builder: (_) => const DemoProfileDetailPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -97,7 +108,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case DemoLeaveRequestPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => DemoLeaveRequestPage(),
+        builder: (_) => const DemoLeaveRequestPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -105,7 +116,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case DemoLeaveReportPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => DemoLeaveReportPage(),
+        builder: (_) => const DemoLeaveReportPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -113,7 +124,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case DemoNotificationPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => DemoNotificationPage(),
+        builder: (_) => const DemoNotificationPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -121,7 +132,23 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case DemoChangePasswordPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => DemoChangePasswordPage(),
+        builder: (_) => const DemoChangePasswordPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+    case DemoViewMember.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const DemoViewMember(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+    case DemoViewOrganizationDetail.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const DemoViewOrganizationDetail(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,

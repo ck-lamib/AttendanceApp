@@ -1,4 +1,5 @@
 import 'package:attendance_bloc/common/utils/common_constants.dart';
+import 'package:attendance_bloc/common/widget/custom_app_bar.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -24,132 +25,123 @@ class _DemoLeaveReportPageState extends State<DemoLeaveReportPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: ParentScreen(
+          appBar: const CustomAppBar(
+            title: "Leave Report",
+          ),
           child: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: AppBar(
-                scrolledUnderElevation: 0,
-                title: Text(
-                  "Leave Report",
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                centerTitle: true,
-                backgroundColor: Colors.transparent,
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: height * 0.1,
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: 'Leave Report By: ',
-                          style: theme.textTheme.titleSmall?.copyWith(
-                            color: AppColor.lightPink,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: height * 0.1,
                           ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: selectedFilter,
+                          RichText(
+                            text: TextSpan(
+                              text: 'Leave Report By: ',
                               style: theme.textTheme.titleSmall?.copyWith(
                                 color: AppColor.lightPink,
-                                fontWeight: FontWeight.w800,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: selectedFilter,
+                                  style: theme.textTheme.titleSmall?.copyWith(
+                                    color: AppColor.lightPink,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.03,
+                          ),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                              // alignment: Alignment.topRight,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColor.main,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "Filter  :     ",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                  DropdownButtonHideUnderline(
+                                    child: DropdownButton(
+                                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                      icon: const Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                      ),
+                                      value: selectedFilter,
+                                      items: [
+                                        DropdownMenuItem(
+                                          value: "Year",
+                                          child: Text(
+                                            "Year",
+                                            style: Theme.of(context).textTheme.bodyMedium,
+                                          ),
+                                        ),
+                                        DropdownMenuItem(
+                                          value: "Month",
+                                          child: Text(
+                                            "Month",
+                                            style: Theme.of(context).textTheme.bodyMedium,
+                                          ),
+                                        ),
+                                        DropdownMenuItem(
+                                          value: "Week",
+                                          child: Text(
+                                            "Week",
+                                            style: Theme.of(context).textTheme.bodyMedium,
+                                          ),
+                                        ),
+                                      ],
+                                      onChanged: (value) {
+                                        setState(() {
+                                          selectedFilter = value;
+                                        });
+                                        print(selectedFilter);
+                                      },
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  // Text(
+                                  //   "Months",
+                                  //   textAlign: TextAlign.center,
+                                  //   style: Theme.of(context).textTheme.bodyMedium,
+                                  // ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                          // alignment: Alignment.topRight,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: AppColor.main,
-                              ),
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "Filter  :     ",
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                              DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                  icon: const Icon(
-                                    Icons.keyboard_arrow_down_rounded,
-                                  ),
-                                  value: selectedFilter,
-                                  items: [
-                                    DropdownMenuItem(
-                                      value: "Year",
-                                      child: Text(
-                                        "Year",
-                                        style: Theme.of(context).textTheme.bodyMedium,
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: "Month",
-                                      child: Text(
-                                        "Month",
-                                        style: Theme.of(context).textTheme.bodyMedium,
-                                      ),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: "Week",
-                                      child: Text(
-                                        "Week",
-                                        style: Theme.of(context).textTheme.bodyMedium,
-                                      ),
-                                    ),
-                                  ],
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedFilter = value;
-                                    });
-                                    print(selectedFilter);
-                                  },
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              // Text(
-                              //   "Months",
-                              //   textAlign: TextAlign.center,
-                              //   style: Theme.of(context).textTheme.bodyMedium,
-                              // ),
-                            ],
                           ),
-                        ),
+                          SizedBox(
+                            height: height * 0.05,
+                          ),
+                          const PieChartWidget(),
+                        ],
                       ),
-                      SizedBox(
-                        height: height * 0.05,
-                      ),
-                      const PieChartWidget(),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            )
-          ],
-        ),
-      )),
+                )
+              ],
+            ),
+          )),
     );
   }
 }

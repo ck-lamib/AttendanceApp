@@ -1,6 +1,8 @@
+import 'package:attendance_bloc/common/utils/image_path.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_change_password.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_detail.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_view_organization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/utils/common_constants.dart';
@@ -64,7 +66,7 @@ class DemoProfilePage extends StatelessWidget {
                                 foregroundColor: AppColor.pink,
                                 backgroundColor: AppColor.main,
                                 backgroundImage: const AssetImage(
-                                  "assets/userAvatar.jpeg",
+                                  ImagePath.userAvatarImagePath,
                                 ),
                                 maxRadius: width * 0.15,
                                 minRadius: width * 0.1,
@@ -172,7 +174,11 @@ class DemoProfilePage extends StatelessWidget {
                                   color: AppColor.dark,
                                 ),
                                 title: "View Your Organization",
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                    DemoViewOrganizationDetail.routeName,
+                                  );
+                                },
                               ),
                               ProfileTile(
                                 leadingIcon: const Icon(
