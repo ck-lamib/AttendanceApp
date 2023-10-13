@@ -136,6 +136,15 @@ class _ClockDetailsState extends State<ClockDetails> {
               ),
         ),
       );
+  Widget get todayDate => Container(
+        padding: const EdgeInsets.only(bottom: 10),
+        alignment: AlignmentDirectional.center,
+        child: Text("[${_dateTime.toString().split(" ").first}]",
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  fontFamily: "Technology",
+                  fontSize: 20,
+                )),
+      );
 
   Widget get _second => Container(
         padding: const EdgeInsets.only(bottom: 10),

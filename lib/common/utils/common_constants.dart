@@ -2,6 +2,7 @@ import 'package:attendance_bloc/common/views/auth/forget_password.dart';
 import 'package:attendance_bloc/common/views/auth/login_page.dart';
 import 'package:attendance_bloc/common/views/auth/verify_otp.dart';
 import 'package:attendance_bloc/common/views/introduction_page.dart';
+import 'package:attendance_bloc/common/views/report_bug.dart';
 import 'package:attendance_bloc/common/views/splash_page.dart';
 import 'package:attendance_bloc/common/widget/member_detail_page.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_change_password.dart';
@@ -83,6 +84,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case MemberDetailPage.routeName:
       return MaterialPageRoute(
         builder: (_) => const MemberDetailPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+    case ReportBug.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const ReportBug(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,

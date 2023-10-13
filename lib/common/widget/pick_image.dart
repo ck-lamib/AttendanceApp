@@ -127,10 +127,12 @@ class ShortCutTile extends StatelessWidget {
     this.boxWidth,
     required this.icon,
     required this.iconName,
+    this.isNavShortcut = false,
     this.onTap,
   });
 
   final double? boxWidth;
+  final bool isNavShortcut;
   final Widget icon;
   final String iconName;
   final VoidCallback? onTap;
@@ -140,9 +142,18 @@ class ShortCutTile extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     var theme = Theme.of(context);
     return GestureDetector(
-      onTap: onTap,
+      onTap: isNavShortcut
+          ? () {
+              Navigator.of(context).pop();
+              if (onTap != null) {
+                onTap!();
+              }
+            }
+          : onTap,
       child: Container(
-        constraints: BoxConstraints(maxWidth: boxWidth ?? width * 0.3),
+        constraints: BoxConstraints(
+          maxWidth: boxWidth ?? width * 0.5,
+        ),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
@@ -161,11 +172,16 @@ class ShortCutTile extends StatelessWidget {
               ),
               child: icon,
             ),
-            Text(
-              iconName,
-              style: theme.textTheme.bodySmall?.copyWith(color: AppColor.lightPink),
-              textAlign: TextAlign.center,
-            )
+            if (iconName != "")
+              Text(
+                iconName,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: AppColor.lightPink,
+                ),
+                textAlign: TextAlign.center,
+              )
           ],
         ),
       ),

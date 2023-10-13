@@ -3,7 +3,10 @@ import 'dart:math';
 import 'package:attendance_bloc/common/utils/common_constants.dart';
 import 'package:attendance_bloc/common/widget/pick_image.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_page.dart';
+import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_view_organization.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_home_page.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_leave_report.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_leave_request.dart';
 import 'package:flutter/material.dart';
 
 class DemoDashboardPage extends StatefulWidget {
@@ -52,7 +55,7 @@ class _DemoDashboardPageState extends State<DemoDashboardPage> {
             ),
           ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: TransformCrossIcon()
+      floatingActionButton: const TransformCrossIcon()
       // PopUpNavigation()
       ,
     );
@@ -120,11 +123,32 @@ class _TransformCrossIconState extends State<TransformCrossIcon>
                     crossAxisSpacing: width * 0.03,
                     mainAxisSpacing: width * 0.03,
                     crossAxisCount: 2,
-                    children: const [
-                      ShortCutTile(icon: Icon(Icons.abc), iconName: "Abc"),
-                      ShortCutTile(icon: Icon(Icons.abc), iconName: "Abc"),
-                      ShortCutTile(icon: Icon(Icons.abc), iconName: "Abc"),
-                      ShortCutTile(icon: Icon(Icons.abc), iconName: "Abc"),
+                    children: [
+                      ShortCutTile(
+                        isNavShortcut: true,
+                        icon: const Icon(Icons.analytics_outlined),
+                        iconName: "Report",
+                        onTap: () {
+                          Navigator.of(context).pushNamed(DemoLeaveReportPage.routeName);
+                        },
+                      ),
+                      ShortCutTile(
+                        isNavShortcut: true,
+                        icon: const Icon(Icons.work_history_rounded),
+                        iconName: "Leave",
+                        onTap: () {
+                          Navigator.of(context).pushNamed(DemoLeaveRequestPage.routeName);
+                        },
+                      ),
+                      ShortCutTile(
+                          isNavShortcut: true,
+                          icon: const Icon(Icons.apartment_sharp),
+                          iconName: "Organization",
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                              DemoViewOrganizationDetail.routeName,
+                            );
+                          }),
                     ],
                   ),
                 ),

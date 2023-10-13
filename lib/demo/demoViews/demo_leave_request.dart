@@ -256,9 +256,8 @@ class _DemoLeaveRequestPageState extends State<DemoLeaveRequestPage> {
                                       contentPadding:
                                           EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                                       textInputType: TextInputType.text,
-                                      textInputAction: TextInputAction.next,
-                                      autofillHints: [AutofillHints.jobTitle],
-                                      validator: Validators.checkEmailField,
+                                      textInputAction: TextInputAction.done,
+                                      validator: Validators.checkFieldEmpty,
                                     ),
                                   ],
                                 )

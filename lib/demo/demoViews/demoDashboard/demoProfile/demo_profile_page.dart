@@ -1,4 +1,6 @@
 import 'package:attendance_bloc/common/utils/image_path.dart';
+import 'package:attendance_bloc/common/views/auth/login_page.dart';
+import 'package:attendance_bloc/common/views/report_bug.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_change_password.dart';
 import 'package:attendance_bloc/demo/demoViews/demoDashboard/demoProfile/demo_profile_detail.dart';
@@ -166,7 +168,11 @@ class DemoProfilePage extends StatelessWidget {
                                   color: AppColor.dark,
                                 ),
                                 title: "Report a Bug",
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                    ReportBug.routeName,
+                                  );
+                                },
                               ),
                               ProfileTile(
                                 leadingIcon: const Icon(
@@ -186,7 +192,36 @@ class DemoProfilePage extends StatelessWidget {
                                   color: AppColor.dark,
                                 ),
                                 title: "Log Out",
-                                onTap: () {},
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text("Logout"),
+                                        content: Text(
+                                          "Are you sure?",
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text("No"),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                                LoginPage.routeName,
+                                                (route) => false,
+                                              );
+                                            },
+                                            child: Text("Yes"),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                             ],
                           ),
