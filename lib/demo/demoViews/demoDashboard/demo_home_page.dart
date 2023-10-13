@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:attendance_bloc/common/utils/common_constants.dart';
 import 'package:attendance_bloc/common/utils/extension.dart';
 import 'package:attendance_bloc/common/widget/activity_tile.dart';

@@ -4,7 +4,7 @@ import 'package:attendance_bloc/common/views/auth/forget_password.dart';
 import 'package:attendance_bloc/common/widget/custom_elevated_button.dart';
 import 'package:attendance_bloc/common/widget/custom_textfield.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
-import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_dashbord_page.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_try_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -131,8 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    DemoDashboardPage.routeName, (route) => false);
+                                Navigator.of(context).pushNamed(DemoTryPage.routeName);
                               },
                               child: Text(
                                 "Try Demo?",

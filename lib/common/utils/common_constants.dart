@@ -12,6 +12,7 @@ import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_dashbord_page.
 import 'package:attendance_bloc/demo/demoViews/demo_leave_report.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_leave_request.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_notification.dart';
+import 'package:attendance_bloc/demo/demoViews/demo_try_page.dart';
 import 'package:attendance_bloc/demo/demoViews/demo_view_members.dart';
 import 'package:flutter/material.dart';
 
@@ -158,6 +159,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case DemoViewOrganizationDetail.routeName:
       return MaterialPageRoute(
         builder: (_) => const DemoViewOrganizationDetail(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+    case DemoTryPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const DemoTryPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
