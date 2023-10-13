@@ -18,9 +18,6 @@ class _DemoViewOrganizationDetailState extends State<DemoViewOrganizationDetail>
   ExpansionTileController aboutExpansionTileController = ExpansionTileController();
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: ParentScreen(

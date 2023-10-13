@@ -21,7 +21,6 @@ class _DemoLeaveReportPageState extends State<DemoLeaveReportPage> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: ParentScreen(
@@ -116,7 +115,7 @@ class _DemoLeaveReportPageState extends State<DemoLeaveReportPage> {
                                         setState(() {
                                           selectedFilter = value;
                                         });
-                                        print(selectedFilter);
+                                        // print(selectedFilter);
                                       },
                                       borderRadius: BorderRadius.circular(10),
                                     ),
@@ -152,7 +151,7 @@ class PieChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    // var height = MediaQuery.of(context).size.height;
     List<LeaveType> values = [
       LeaveType(name: "Work Days", value: 75, color: AppColor.pink),
       LeaveType(name: "Holidays", value: 5, color: AppColor.main),

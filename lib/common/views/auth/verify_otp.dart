@@ -10,7 +10,7 @@ import 'package:timer_count_down/timer_count_down.dart';
 class VerifyOtp extends StatelessWidget {
   static const String routeName = "/verify-otp/";
   VerifyOtp({super.key});
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController _otpController = TextEditingController();
   final CountdownController _countdownController = CountdownController(
     autoStart: true,
@@ -126,7 +126,7 @@ class VerifyOtp extends StatelessWidget {
                                               ),
                                             )
                                           : Text(
-                                              "Resend the code in ${time} ",
+                                              "Resend the code in $time ",
                                               textAlign: TextAlign.center,
                                               style: theme.textTheme.bodyMedium,
                                             ),
@@ -145,7 +145,7 @@ class VerifyOtp extends StatelessWidget {
                               size: Size(width * 0.5, 50),
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
-                                  if (_otpController.value == "1111") {
+                                  if (_otpController.value.text == "1111") {
                                     Navigator.of(context);
                                   } else {}
                                 }

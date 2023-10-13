@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:attendance_bloc/common/utils/image_path.dart';
 import 'package:attendance_bloc/common/utils/validators.dart';
-import 'package:attendance_bloc/common/widget/custom_app_bar.dart';
 import 'package:attendance_bloc/common/widget/custom_outline_textfield.dart';
 import 'package:attendance_bloc/common/widget/parent_screen.dart';
 import 'package:attendance_bloc/common/widget/pick_image.dart';

@@ -1,6 +1,5 @@
 import 'package:attendance_bloc/common/utils/common_constants.dart';
 import 'package:attendance_bloc/common/views/splash_page.dart';
-import 'package:attendance_bloc/demo/demoViews/demoDashboard/demo_dashbord_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
