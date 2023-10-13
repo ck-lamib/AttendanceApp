@@ -1,6 +1,8 @@
-import 'package:attendance_bloc/common/utils/common_constants.dart';
-import 'package:attendance_bloc/common/views/splash_page.dart';
+import 'package:attendance_bloc/utils/constants/route_constants.dart';
+import 'package:attendance_bloc/Screens/splash_page.dart';
 import 'package:flutter/material.dart';
+
+import 'utils/constants/colors.dart';
 
 void main() {
   runApp(const AttendanceApp());
