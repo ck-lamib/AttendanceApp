@@ -1,4 +1,4 @@
-import 'package:attendance_bloc/utils/constants/route_constants.dart';
+import 'package:attendance_bloc/config/router/route_constants.dart';
 import 'package:attendance_bloc/Screens/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +8,15 @@ void main() {
   runApp(const AttendanceApp());
 }
 
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class AttendanceApp extends StatelessWidget {
   const AttendanceApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       theme: ThemeData.dark(
               // scaffoldBackgroundColor: Colors.black,
 
