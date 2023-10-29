@@ -14,7 +14,7 @@ class Validators {
     fieldContent!.trim();
     if (fieldContent.isEmpty) {
       return 'This field is required';
-    } else if (!(RegExp(emailRegex).hasMatch(fieldContent) && fieldContent.length == 10)) {
+    } else if (!(RegExp(numberOnly).hasMatch(fieldContent) && fieldContent.length == 10)) {
       return 'Invalid phone number';
     }
 

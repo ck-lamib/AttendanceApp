@@ -40,6 +40,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: padding ?? const EdgeInsets.fromLTRB(24, 12, 24, 0),
       child: AppBar(
+        scrolledUnderElevation: 0,
         leading: hasLeading
             ? InkWell(
                 onTap: () {

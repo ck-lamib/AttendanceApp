@@ -2,6 +2,7 @@ import 'package:attendance_bloc/Screens/leave/views/leave_report_page.dart';
 import 'package:attendance_bloc/Screens/leave/views/leave_request_page.dart';
 import 'package:attendance_bloc/Screens/member/views/view_members.dart';
 import 'package:attendance_bloc/Screens/notification/views/notification_page.dart';
+import 'package:attendance_bloc/Screens/organization/views/add_staff.dart';
 
 import 'package:attendance_bloc/Screens/widgets/activity_tile.dart';
 import 'package:attendance_bloc/Screens/widgets/clock_detail.dart';
@@ -202,6 +203,17 @@ class HomePage extends StatelessWidget {
                       prefixIcon: Icons.groups_2_rounded,
                       onTap: () {
                         Navigator.of(context).pushNamed(ViewMember.routeName);
+                      },
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    FeatureTile(
+                      title: "Add Staff",
+                      subtitle: "Invite or add staff in your organization",
+                      prefixIcon: Icons.groups_2_rounded,
+                      onTap: () {
+                        Navigator.of(context).pushNamed(AddStaffPage.routeName);
                       },
                     ),
                   ],

@@ -37,7 +37,10 @@ class CustomElevatedButton extends StatelessWidget {
             )
           : Text(
               title,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColor.dark),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: textColor ?? AppColor.dark),
             ),
     );
   }

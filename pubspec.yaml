@@ -34,6 +34,7 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.3.3
   dots_indicator: ^3.0.0
+  dotted_border: ^2.1.0
   dropdown_button2: ^2.3.9
   equatable: ^2.0.5
   fl_chart: ^0.63.0

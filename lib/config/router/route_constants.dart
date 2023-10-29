@@ -11,7 +11,10 @@ import 'package:attendance_bloc/Screens/leave/views/leave_report_page.dart';
 import 'package:attendance_bloc/Screens/leave/views/leave_request_page.dart';
 import 'package:attendance_bloc/Screens/member/views/view_members.dart';
 import 'package:attendance_bloc/Screens/notification/views/notification_page.dart';
+import 'package:attendance_bloc/Screens/organization/views/add_staff.dart';
+import 'package:attendance_bloc/Screens/organization/views/admin_password_setup.dart';
 import 'package:attendance_bloc/Screens/organization/views/admin_setup.dart';
+import 'package:attendance_bloc/Screens/organization/views/organization_setup.dart';
 import 'package:attendance_bloc/Screens/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -172,6 +175,30 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case AdminSetupPage.routeName:
       return MaterialPageRoute(
         builder: (_) => const AdminSetupPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+    case AdminPasswordSetupPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const AdminPasswordSetupPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+    case OrganizationSetupPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const OrganizationSetupPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+    case AddStaffPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const AddStaffPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,

@@ -23,7 +23,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         await locator<LoginUsecase>().loginUser(userName: event.userName, password: event.password);
 
     result.fold((failure) {
-      emit(state.copyWith(status: LoginStatus.error));
+      emit(state.copyWith(
+        status: LoginStatus.error,
+      ));
     }, (data) {
       CustomLogger.trace(data.toJson());
       emit(state.copyWith(status: LoginStatus.success));

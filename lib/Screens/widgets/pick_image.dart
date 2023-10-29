@@ -6,68 +6,78 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageService {
-  pickImage(BuildContext context) async {
+  pickImage(BuildContext context, {ImageSource? source}) async {
     var theme = Theme.of(context);
     File? image;
     ImagePicker imagePicker = ImagePicker();
-    await showModalBottomSheet(
-      useSafeArea: true,
-      backgroundColor: Colors.white,
-      context: context,
-      builder: (context) => Padding(
-        padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              titleAlignment: ListTileTitleAlignment.center,
-              title: Text(
-                "Choose an image source",
-                style: theme.textTheme.titleMedium?.copyWith(color: AppColor.main),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ShortCutTile(
-                  icon: const Icon(
-                    Icons.camera,
-                    color: AppColor.lightPink,
-                  ),
-                  iconName: "Camera",
-                  onTap: () async {
-                    XFile? xFile = await imagePicker.pickImage(source: ImageSource.camera);
-                    if (xFile != null) {
-                      image = File(xFile.path);
-                    }
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  },
+    if (source != null) {
+      XFile? xFile = await imagePicker.pickImage(source: source);
+      if (xFile != null) {
+        image = File(xFile.path);
+      }
+      // if (context.mounted) {
+      //   Navigator.pop(context);
+      // }
+    } else {
+      await showModalBottomSheet(
+        useSafeArea: true,
+        backgroundColor: Colors.white,
+        context: context,
+        builder: (context) => Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                titleAlignment: ListTileTitleAlignment.center,
+                title: Text(
+                  "Choose an image source",
+                  style: theme.textTheme.titleMedium?.copyWith(color: AppColor.main),
+                  textAlign: TextAlign.center,
                 ),
-                ShortCutTile(
-                  icon: const Icon(
-                    Icons.folder,
-                    color: AppColor.lightPink,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ShortCutTile(
+                    icon: const Icon(
+                      Icons.camera,
+                      color: AppColor.lightPink,
+                    ),
+                    iconName: "Camera",
+                    onTap: () async {
+                      XFile? xFile = await imagePicker.pickImage(source: ImageSource.camera);
+                      if (xFile != null) {
+                        image = File(xFile.path);
+                      }
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                      }
+                    },
                   ),
-                  iconName: "Gallery",
-                  onTap: () async {
-                    XFile? xFile = await imagePicker.pickImage(source: ImageSource.gallery);
-                    if (xFile != null) {
-                      image = File(xFile.path);
-                    }
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
-                  },
-                )
-              ],
-            ),
-          ],
+                  ShortCutTile(
+                    icon: const Icon(
+                      Icons.folder,
+                      color: AppColor.lightPink,
+                    ),
+                    iconName: "Gallery",
+                    onTap: () async {
+                      XFile? xFile = await imagePicker.pickImage(source: ImageSource.gallery);
+                      if (xFile != null) {
+                        image = File(xFile.path);
+                      }
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                      }
+                    },
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
     return image;
   }
 

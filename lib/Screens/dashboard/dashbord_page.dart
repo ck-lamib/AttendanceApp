@@ -29,6 +29,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: PageView(
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
@@ -55,9 +56,10 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const TransformCrossIcon()
+      floatingActionButton: Visibility(
+          visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+          child: const TransformCrossIcon()),
       // PopUpNavigation()
-      ,
     );
   }
 }
