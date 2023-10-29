@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? const EdgeInsets.symmetric(horizontal: 24),
+      padding: padding ?? const EdgeInsets.fromLTRB(24, 12, 24, 0),
       child: AppBar(
         leading: hasLeading
             ? InkWell(

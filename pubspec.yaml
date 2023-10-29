@@ -31,6 +31,7 @@ dependencies:
   another_flushbar: ^1.12.30
   bloc: ^8.1.2
   cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
   dio: ^5.3.3
   dots_indicator: ^3.0.0
   dropdown_button2: ^2.3.9
@@ -46,6 +47,7 @@ dependencies:
   image_picker: ^1.0.4
   intl: ^0.18.1
   pinput: ^3.0.1
+  shared_preferences: ^2.2.2
   timer_count_down: ^2.2.2
 
 dev_dependencies:

@@ -1,16 +1,17 @@
-import 'package:attendance_bloc/Screens/views/auth/demo_change_password.dart';
-import 'package:attendance_bloc/Screens/views/dashboard/dashbord_page.dart';
-import 'package:attendance_bloc/Screens/views/dashboard/profile/user_detail_page.dart';
-import 'package:attendance_bloc/Screens/views/dashboard/profile/view_organization_page.dart';
-import 'package:attendance_bloc/Screens/views/leave/leave_report_page.dart';
-import 'package:attendance_bloc/Screens/views/leave/leave_request_page.dart';
-import 'package:attendance_bloc/Screens/views/member/demo_view_members.dart';
-import 'package:attendance_bloc/Screens/views/notification/notification_page.dart';
-import 'package:attendance_bloc/Screens/views/auth/forget_password.dart';
-import 'package:attendance_bloc/Screens/views/auth/login_page.dart';
-import 'package:attendance_bloc/Screens/views/auth/verify_otp.dart';
-import 'package:attendance_bloc/Screens/views/introduction/introduction_page.dart';
-import 'package:attendance_bloc/Screens/views/dashboard/profile/report_bug.dart';
+import 'package:attendance_bloc/Screens/auth/views/change_password.dart';
+import 'package:attendance_bloc/Screens/auth/views/forget_password.dart';
+import 'package:attendance_bloc/Screens/auth/views/login_page.dart';
+import 'package:attendance_bloc/Screens/auth/views/verify_otp.dart';
+import 'package:attendance_bloc/Screens/dashboard/dashbord_page.dart';
+import 'package:attendance_bloc/Screens/dashboard/profile/views/report_bug.dart';
+import 'package:attendance_bloc/Screens/dashboard/profile/views/user_detail_page.dart';
+import 'package:attendance_bloc/Screens/dashboard/profile/views/view_organization_page.dart';
+import 'package:attendance_bloc/Screens/introduction/views/introduction_page.dart';
+import 'package:attendance_bloc/Screens/leave/views/leave_report_page.dart';
+import 'package:attendance_bloc/Screens/leave/views/leave_request_page.dart';
+import 'package:attendance_bloc/Screens/member/views/view_members.dart';
+import 'package:attendance_bloc/Screens/notification/views/notification_page.dart';
+import 'package:attendance_bloc/Screens/organization/views/admin_setup.dart';
 import 'package:attendance_bloc/Screens/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,6 @@ import '../../Screens/widgets/member_detail_page.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    //common app route
     case SplashPage.routeName:
       return MaterialPageRoute(
         builder: (_) => const SplashPage(),
@@ -42,14 +42,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           arguments: settings.arguments,
         ),
       );
-    case IntroductionPage.routeName:
-      return MaterialPageRoute(
-        builder: (_) => const IntroductionPage(),
-        settings: RouteSettings(
-          name: settings.name,
-          arguments: settings.arguments,
-        ),
-      );
+
+    //auth app route
     case LoginPage.routeName:
       return MaterialPageRoute(
         builder: (_) => const LoginPage(),
@@ -66,6 +60,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           arguments: settings.arguments,
         ),
       );
+    case ChangePasswordPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const ChangePasswordPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
     case VerifyOtpPage.routeName:
       return MaterialPageRoute(
         builder: (_) => VerifyOtpPage(),
@@ -74,9 +76,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           arguments: settings.arguments,
         ),
       );
-    case MemberDetailPage.routeName:
+
+    //dashboard-profile
+    case DashboardPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => const MemberDetailPage(),
+        builder: (_) => const DashboardPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -91,15 +95,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         ),
       );
 
-    //demo app route
-    case DashboardPage.routeName:
-      return MaterialPageRoute(
-        builder: (_) => const DashboardPage(),
-        settings: RouteSettings(
-          name: settings.name,
-          arguments: settings.arguments,
-        ),
-      );
     case ProfileDetailPage.routeName:
       return MaterialPageRoute(
         builder: (_) => const ProfileDetailPage(),
@@ -108,6 +103,26 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           arguments: settings.arguments,
         ),
       );
+    case ViewOrganizationDetailPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const ViewOrganizationDetailPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+
+    //introduction
+    case IntroductionPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const IntroductionPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+
+    //leave
     case LeaveRequestPage.routeName:
       return MaterialPageRoute(
         builder: (_) => const LeaveRequestPage(),
@@ -124,17 +139,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           arguments: settings.arguments,
         ),
       );
-    case NotificationPage.routeName:
+
+    //member
+    case MemberDetailPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => const NotificationPage(),
-        settings: RouteSettings(
-          name: settings.name,
-          arguments: settings.arguments,
-        ),
-      );
-    case ChangePasswordPage.routeName:
-      return MaterialPageRoute(
-        builder: (_) => const ChangePasswordPage(),
+        builder: (_) => const MemberDetailPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -148,9 +157,21 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           arguments: settings.arguments,
         ),
       );
-    case ViewOrganizationDetailPage.routeName:
+
+    //notification
+    case NotificationPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => const ViewOrganizationDetailPage(),
+        builder: (_) => const NotificationPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+
+    //organization
+    case AdminSetupPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const AdminSetupPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
