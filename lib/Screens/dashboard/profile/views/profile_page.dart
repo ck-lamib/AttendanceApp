@@ -3,7 +3,8 @@ import 'package:attendance_bloc/Screens/auth/views/login_page.dart';
 import 'package:attendance_bloc/Screens/dashboard/profile/views/report_bug.dart';
 import 'package:attendance_bloc/Screens/dashboard/profile/views/user_detail_page.dart';
 import 'package:attendance_bloc/Screens/dashboard/profile/views/view_organization_page.dart';
-import 'package:attendance_bloc/Screens/organization/views/admin_setup.dart';
+import 'package:attendance_bloc/Screens/organization/views/organization_setup.dart';
+import 'package:attendance_bloc/Screens/organization/views/switch_organization.dart';
 import 'package:attendance_bloc/core/core_controller.dart';
 import 'package:attendance_bloc/core/di.dart';
 import 'package:attendance_bloc/utils/helpers/image_path.dart';
@@ -191,13 +192,25 @@ class ProfilePage extends StatelessWidget {
                               ),
                               ProfileTile(
                                 leadingIcon: const Icon(
-                                  Icons.apartment_sharp,
+                                  Icons.add_home_work_outlined,
                                   color: AppColor.dark,
                                 ),
-                                title: "Admin setup",
+                                title: "Setup your organization",
                                 onTap: () {
                                   Navigator.of(context).pushNamed(
-                                    AdminSetupPage.routeName,
+                                    OrganizationSetupPage.routeName,
+                                  );
+                                },
+                              ),
+                              ProfileTile(
+                                leadingIcon: const Icon(
+                                  Icons.switch_account_rounded,
+                                  color: AppColor.dark,
+                                ),
+                                title: "Switch organization",
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                    SwitchOrganizationPage.routeName,
                                   );
                                 },
                               ),

@@ -107,7 +107,6 @@ class _OrganizationSetupPageState extends State<OrganizationSetupPage> {
                               hint: "Website Link",
                               textInputAction: TextInputAction.done,
                               textInputType: TextInputType.url,
-                              validator: Validators.checkFieldEmpty,
                             ),
                           ],
                         ),

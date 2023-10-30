@@ -15,6 +15,7 @@ import 'package:attendance_bloc/Screens/organization/views/add_staff.dart';
 import 'package:attendance_bloc/Screens/organization/views/admin_password_setup.dart';
 import 'package:attendance_bloc/Screens/organization/views/admin_setup.dart';
 import 'package:attendance_bloc/Screens/organization/views/organization_setup.dart';
+import 'package:attendance_bloc/Screens/organization/views/switch_organization.dart';
 import 'package:attendance_bloc/Screens/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +50,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //auth app route
     case LoginPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => LoginPage(),
+        builder: (_) => const LoginPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -199,6 +200,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case AddStaffPage.routeName:
       return MaterialPageRoute(
         builder: (_) => const AddStaffPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
+    case SwitchOrganizationPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const SwitchOrganizationPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
