@@ -12,6 +12,7 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(const LoginState()) {
     on<SubmitCredentialEvent>(_mapSubmitCredentialEventToState);
+    on<TooglePasswordEvent>(_mapTooglePasswordEventToState);
   }
 
   FutureOr<void> _mapSubmitCredentialEventToState(
@@ -30,5 +31,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       CustomLogger.trace(data.toJson());
       emit(state.copyWith(status: LoginStatus.success));
     });
+  }
+
+  FutureOr<void> _mapTooglePasswordEventToState(
+      TooglePasswordEvent event, Emitter<LoginState> emit) {
+    emit(state.copyWith(isPasswordHidden: !event.isHidePassword));
   }
 }

@@ -1,5 +1,4 @@
 import 'package:attendance_bloc/Screens/auth/bloc/login_bloc/login_bloc.dart';
-import 'package:attendance_bloc/Screens/auth/views/forget_password.dart';
 import 'package:attendance_bloc/Screens/dashboard/dashbord_page.dart';
 import 'package:attendance_bloc/Screens/organization/views/admin_password_setup.dart';
 import 'package:attendance_bloc/Screens/widgets/custom/custom_app_bar.dart';
@@ -7,7 +6,6 @@ import 'package:attendance_bloc/Screens/widgets/custom/snackbar.dart';
 import 'package:attendance_bloc/utils/helpers/validators.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -33,8 +31,8 @@ class _AdminSetupPageState extends State<AdminSetupPage> {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       extendBodyBehindAppBar: true,

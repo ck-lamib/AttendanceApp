@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:attendance_bloc/Screens/widgets/custom/logger.dart';
 import 'package:attendance_bloc/core/di.dart';
 import 'package:attendance_bloc/core/failure.dart';
-import 'package:attendance_bloc/models/access_token_model.dart';
 
 import 'package:attendance_bloc/models/user_model.dart';
 import 'package:attendance_bloc/utils/helpers/database_keys.dart';

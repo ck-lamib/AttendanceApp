@@ -53,6 +53,8 @@ class CoreController {
     return isIntroShown;
   }
 
+  isAdmin() {}
+
   loggedOut() async {
     // SharedPreferences sharedPreferences = locator<SharedPreferences>();
     await locator<LocalUserService>().deleteUser();

@@ -24,15 +24,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
-  bool isVisible = false;
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: ParentScreen(
@@ -79,29 +79,36 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: height * 0.05,
                           ),
-                          CustomTextField(
-                            hint: "Password",
-                            controller: _passwordController,
-                            textInputAction: TextInputAction.done,
-                            textInputType: TextInputType.visiblePassword,
-                            prefixIcon: const Icon(
-                              Icons.password_rounded,
-                              color: AppColor.dark,
-                            ),
-                            autofillHints: const [AutofillHints.password],
-                            obscureText: !isVisible,
-                            suffixIcon: IconButton(
-                                onPressed: togglePassword,
-                                icon: isVisible
-                                    ? const Icon(
-                                        Icons.visibility_rounded,
-                                        color: AppColor.dark,
-                                      )
-                                    : const Icon(
-                                        Icons.visibility_off_rounded,
-                                        color: AppColor.dark,
-                                      )),
-                            validator: Validators.checkPasswordField,
+                          BlocBuilder<LoginBloc, LoginState>(
+                            builder: (context, state) {
+                              return CustomTextField(
+                                hint: "Password",
+                                controller: _passwordController,
+                                textInputAction: TextInputAction.done,
+                                textInputType: TextInputType.visiblePassword,
+                                prefixIcon: const Icon(
+                                  Icons.password_rounded,
+                                  color: AppColor.dark,
+                                ),
+                                autofillHints: const [AutofillHints.password],
+                                obscureText: state.isPasswordHidden,
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      context.read<LoginBloc>().add(TooglePasswordEvent(
+                                          isHidePassword: state.isPasswordHidden));
+                                    },
+                                    icon: !state.isPasswordHidden
+                                        ? const Icon(
+                                            Icons.visibility_rounded,
+                                            color: AppColor.dark,
+                                          )
+                                        : const Icon(
+                                            Icons.visibility_off_rounded,
+                                            color: AppColor.dark,
+                                          )),
+                                validator: Validators.checkPasswordField,
+                              );
+                            },
                           ),
                           SizedBox(
                             height: height * 0.1,
@@ -159,7 +166,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushNamed(ForgetPasswordPage.routeName);
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    ForgetPasswordPage.routeName, (route) => false);
                               },
                               child: Text(
                                 "Forget Your Password?",
@@ -200,10 +208,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       )),
     );
-  }
-
-  togglePassword() {
-    isVisible = !isVisible;
-    setState(() {});
   }
 }

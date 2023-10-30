@@ -21,7 +21,8 @@ class _LeaveReportPageState extends State<LeaveReportPage> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var height = MediaQuery.of(context).size.height;
+    var height = MediaQuery.sizeOf(context).height;
+    // var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: ParentScreen(
@@ -151,8 +152,8 @@ class PieChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    // var height = MediaQuery.of(context).size.height;
+//  var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     List<LeaveType> values = [
       LeaveType(name: "Work Days", value: 75, color: AppColor.pink),
       LeaveType(name: "Holidays", value: 5, color: AppColor.main),
@@ -235,8 +236,8 @@ class Indicator extends StatelessWidget {
     return Row(
       children: <Widget>[
         Container(
-          width: MediaQuery.of(context).size.width * 0.07,
-          height: MediaQuery.of(context).size.width * 0.05,
+          width: MediaQuery.sizeOf(context).width * 0.07,
+          height: MediaQuery.sizeOf(context).width * 0.05,
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(5),
@@ -244,7 +245,7 @@ class Indicator extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.03,
+          width: MediaQuery.sizeOf(context).width * 0.03,
         ),
         Text(
           text ?? "",

@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import '../main.dart';
-
 class BaseRemoteServices {
   Dio dio = Dio();
   CancelToken cancelToken = CancelToken();

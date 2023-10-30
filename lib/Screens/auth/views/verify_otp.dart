@@ -21,8 +21,8 @@ class VerifyOtpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     var theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: true,

@@ -12,3 +12,8 @@ class SubmitCredentialEvent extends LoginEvent {
   final String password;
   const SubmitCredentialEvent({required this.userName, required this.password});
 }
+
+class TooglePasswordEvent extends LoginEvent {
+  final bool isHidePassword;
+  const TooglePasswordEvent({required this.isHidePassword});
+}

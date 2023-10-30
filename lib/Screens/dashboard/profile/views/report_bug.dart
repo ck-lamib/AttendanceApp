@@ -21,8 +21,8 @@ class _ReportBugPageState extends State<ReportBugPage> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       body: ParentScreen(
           appBar: const CustomAppBar(

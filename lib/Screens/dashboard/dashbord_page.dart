@@ -94,13 +94,14 @@ class _TransformCrossIconState extends State<TransformCrossIcon>
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    // var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return IconButton(
         onPressed: () {
           _controller.forward();
           var numberDialog = Container(
             margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * 0.15,
+              bottom: MediaQuery.sizeOf(context).height * 0.15,
               // left: width * 0.22,
               // right: width * 0.22,
             ),

@@ -149,7 +149,8 @@ class ShortCutTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    // var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     var theme = Theme.of(context);
     return GestureDetector(
       onTap: isNavShortcut

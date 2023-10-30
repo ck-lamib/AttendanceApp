@@ -1,9 +1,6 @@
-import 'package:attendance_bloc/Screens/dashboard/dashbord_page.dart';
-import 'package:attendance_bloc/Screens/organization/views/admin_setup.dart';
-import 'package:attendance_bloc/Screens/organization/views/organization_setup.dart';
 import 'package:attendance_bloc/Screens/widgets/custom/custom_app_bar.dart';
 import 'package:attendance_bloc/Screens/widgets/custom/custom_outline_textfield.dart';
-import 'package:attendance_bloc/Screens/widgets/custom/logger.dart';
+
 import 'package:attendance_bloc/utils/helpers/validators.dart';
 
 import 'package:flutter/material.dart';
@@ -35,8 +32,8 @@ class _AddStaffPageState extends State<AddStaffPage> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       body: ParentScreen(
           appBar: const CustomAppBar(

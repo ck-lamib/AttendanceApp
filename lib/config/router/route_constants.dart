@@ -49,7 +49,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //auth app route
     case LoginPage.routeName:
       return MaterialPageRoute(
-        builder: (_) => const LoginPage(),
+        builder: (_) => LoginPage(),
         settings: RouteSettings(
           name: settings.name,
           arguments: settings.arguments,
@@ -219,8 +219,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
 // @override
 //   Widget build(BuildContext context) {
-//     var height = MediaQuery.of(context).size.height;
-//     var width = MediaQuery.of(context).size.width;
+//     var height = MediaQuery.sizeOf(context).height;
+//     var width = MediaQuery.sizeOf(context).width;
 //     return Scaffold(
 //       body: ParentScreen(
 //           child: SafeArea(
