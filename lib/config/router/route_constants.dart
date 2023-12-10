@@ -1,6 +1,7 @@
 import 'package:attendance_bloc/Screens/auth/views/change_password.dart';
 import 'package:attendance_bloc/Screens/auth/views/forget_password.dart';
 import 'package:attendance_bloc/Screens/auth/views/login_page.dart';
+import 'package:attendance_bloc/Screens/auth/views/verify_email_login.dart';
 import 'package:attendance_bloc/Screens/auth/views/verify_otp.dart';
 import 'package:attendance_bloc/Screens/dashboard/dashbord_page.dart';
 import 'package:attendance_bloc/Screens/dashboard/profile/views/report_bug.dart';
@@ -48,6 +49,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
 
     //auth app route
+    case VerifyEmailLoginPage.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const VerifyEmailLoginPage(),
+        settings: RouteSettings(
+          name: settings.name,
+          arguments: settings.arguments,
+        ),
+      );
     case LoginPage.routeName:
       return MaterialPageRoute(
         builder: (_) => const LoginPage(),

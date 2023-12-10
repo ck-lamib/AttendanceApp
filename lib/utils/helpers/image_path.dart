@@ -4,5 +4,5 @@ class ImagePath {
   static const String backgroundImagePath = "assets/image/sample.png";
   static const String bannerImagePath = "assets/image/aarambahcv.jpeg";
   static const String introductionPageImagePath = "assets/image/introduction.png";
-  static const String splashImagePath = "assets/image/attendanceLogo.png";
+  static const String splashImagePath = "assets/image/attendanceLogoo.png";
 }

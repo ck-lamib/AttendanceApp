@@ -1,3 +1,4 @@
+import 'package:attendance_bloc/Screens/auth/controller/login_controller.dart';
 import 'package:attendance_bloc/core/core_controller.dart';
 import 'package:attendance_bloc/datasource/local/local_extra_storage_service.dart';
 import 'package:attendance_bloc/datasource/local/local_token_service.dart';
@@ -41,6 +42,8 @@ Future<void> initializeDependencies() async {
   locator.registerFactory<LoginService>(() => LoginServiceImpl());
   //usecase
   locator.registerFactory<LoginUsecase>(() => LoginUsecase());
+  //controller
+  locator.registerFactory<LoginController>(() => LoginController());
 
   //notification
   locator.registerFactory<NotificationRepo>(() => NotificationRepoImpl());

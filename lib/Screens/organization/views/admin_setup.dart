@@ -1,4 +1,3 @@
-import 'package:attendance_bloc/Screens/auth/bloc/login_bloc/login_bloc.dart';
 import 'package:attendance_bloc/Screens/dashboard/dashbord_page.dart';
 import 'package:attendance_bloc/Screens/organization/views/admin_password_setup.dart';
 import 'package:attendance_bloc/Screens/widgets/custom/custom_app_bar.dart';
@@ -143,58 +142,58 @@ class _AdminSetupPageState extends State<AdminSetupPage> {
                             SizedBox(
                               height: height * 0.1,
                             ),
-                            BlocConsumer<LoginBloc, LoginState>(
-                              listener: (context, state) {
-                                if (state.status == LoginStatus.error) {
-                                  CustomSnackBar.show(
-                                    context: context,
-                                    customSnackbarType: CustomSnackbarType.error,
-                                    title: "Login failed",
-                                    message: "Login failed. Please try again",
-                                  );
-                                } else if (state.status == LoginStatus.success) {
-                                  Navigator.of(context).pushNamedAndRemoveUntil(
-                                      DashboardPage.routeName, (route) => false);
-                                  CustomSnackBar.show(
-                                    context: context,
-                                    customSnackbarType: CustomSnackbarType.success,
-                                    title: "Login success",
-                                    message: "Logged in successfully",
-                                  );
-                                }
-                              },
-                              builder: (context, state) {
-                                if (state.status == LoginStatus.loading) {
-                                  return CustomElevatedButton(
-                                    title: "Next",
-                                    onTap: () {},
-                                    size: Size(width * 0.5, 50),
-                                    isLoading: true,
-                                  );
-                                }
+                            // BlocConsumer<LoginBloc, LoginState>(
+                            //   listener: (context, state) {
+                            //     if (state.status == LoginStatus.error) {
+                            //       CustomSnackBar.show(
+                            //         context: context,
+                            //         customSnackbarType: CustomSnackbarType.error,
+                            //         title: "Login failed",
+                            //         message: "Login failed. Please try again",
+                            //       );
+                            //     } else if (state.status == LoginStatus.success) {
+                            //       Navigator.of(context).pushNamedAndRemoveUntil(
+                            //           DashboardPage.routeName, (route) => false);
+                            //       CustomSnackBar.show(
+                            //         context: context,
+                            //         customSnackbarType: CustomSnackbarType.success,
+                            //         title: "Login success",
+                            //         message: "Logged in successfully",
+                            //       );
+                            //     }
+                            //   },
+                            //   builder: (context, state) {
+                            //     if (state.status == LoginStatus.loading) {
+                            //       return CustomElevatedButton(
+                            //         title: "Next",
+                            //         onTap: () {},
+                            //         size: Size(width * 0.5, 50),
+                            //         isLoading: true,
+                            //       );
+                            //     }
 
-                                return CustomElevatedButton(
-                                  title: "Next",
-                                  size: Size(width * 0.5, 50),
-                                  onTap: () {
-                                    if (formKey.currentState!.validate()) {
-                                      // context.read<LoginBloc>().add(
-                                      //       SubmitCredentialEvent(
-                                      //           userName: _emailController.text,
-                                      //           password: _passwordController.text),
-                                      //     );
-                                      Navigator.of(context).pushNamed(
-                                        AdminPasswordSetupPage.routeName,
-                                        arguments: AdminDetail(
-                                            fullName: _fullNameController.text,
-                                            email: _emailController.text,
-                                            number: _contactNumberController.text),
-                                      );
-                                    }
-                                  },
-                                );
-                              },
-                            ),
+                            //     return CustomElevatedButton(
+                            //       title: "Next",
+                            //       size: Size(width * 0.5, 50),
+                            //       onTap: () {
+                            //         if (formKey.currentState!.validate()) {
+                            //           // context.read<LoginBloc>().add(
+                            //           //       SubmitCredentialEvent(
+                            //           //           userName: _emailController.text,
+                            //           //           password: _passwordController.text),
+                            //           //     );
+                            //           Navigator.of(context).pushNamed(
+                            //             AdminPasswordSetupPage.routeName,
+                            //             arguments: AdminDetail(
+                            //                 fullName: _fullNameController.text,
+                            //                 email: _emailController.text,
+                            //                 number: _contactNumberController.text),
+                            //           );
+                            //         }
+                            //       },
+                            //     );
+                            //   },
+                            // ),
                             SizedBox(
                               height: height * 0.07,
                             ),

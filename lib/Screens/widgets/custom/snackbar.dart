@@ -48,3 +48,27 @@ enum CustomSnackbarType {
 
   const CustomSnackbarType(this.color);
 }
+
+class ResponseData {
+  final String? message;
+  final Object? data;
+  final ResponseStatus? responseStatus;
+
+  ResponseData({this.message, this.data, this.responseStatus});
+  ResponseData copyWith({
+    String? message,
+    Object? data,
+    ResponseStatus? responseStatus,
+  }) {
+    return ResponseData(
+      message: message ?? this.message,
+      data: data ?? this.data,
+      responseStatus: responseStatus ?? this.responseStatus,
+    );
+  }
+}
+
+enum ResponseStatus {
+  success,
+  error,
+}

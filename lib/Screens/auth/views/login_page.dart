@@ -1,13 +1,14 @@
-import 'package:attendance_bloc/Screens/auth/bloc/login_bloc/login_bloc.dart';
+import 'package:attendance_bloc/Screens/auth/controller/login_controller.dart';
 import 'package:attendance_bloc/Screens/auth/views/forget_password.dart';
 import 'package:attendance_bloc/Screens/dashboard/dashbord_page.dart';
 import 'package:attendance_bloc/Screens/organization/views/admin_setup.dart';
 import 'package:attendance_bloc/Screens/widgets/custom/snackbar.dart';
+import 'package:attendance_bloc/core/di.dart';
 import 'package:attendance_bloc/utils/helpers/validators.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../widgets/custom/custom_elevated_button.dart';
@@ -23,11 +24,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  final TextEditingController _emailController = TextEditingController();
-
-  final TextEditingController _passwordController = TextEditingController();
+  final LoginController c = locator.get<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +58,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   AutofillGroup(
                     child: Form(
-                      key: formKey,
+                      key: c.formKey,
                       child: Column(
                         children: [
                           CustomTextField(
                             hint: "Email",
-                            controller: _emailController,
+                            controller: c.emailController,
                             textInputType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.next,
                             autofillHints: const [AutofillHints.email],
@@ -79,87 +76,68 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: height * 0.05,
                           ),
-                          BlocBuilder<LoginBloc, LoginState>(
-                            builder: (context, state) {
-                              return CustomTextField(
-                                hint: "Password",
-                                controller: _passwordController,
-                                textInputAction: TextInputAction.done,
-                                textInputType: TextInputType.visiblePassword,
-                                prefixIcon: const Icon(
-                                  Icons.password_rounded,
-                                  color: AppColor.dark,
-                                ),
-                                autofillHints: const [AutofillHints.password],
-                                obscureText: state.isPasswordHidden,
-                                suffixIcon: IconButton(
-                                    onPressed: () {
-                                      context.read<LoginBloc>().add(TooglePasswordEvent(
-                                          isHidePassword: state.isPasswordHidden));
-                                    },
-                                    icon: !state.isPasswordHidden
-                                        ? const Icon(
-                                            Icons.visibility_rounded,
-                                            color: AppColor.dark,
-                                          )
-                                        : const Icon(
-                                            Icons.visibility_off_rounded,
-                                            color: AppColor.dark,
-                                          )),
-                                validator: Validators.checkPasswordField,
-                              );
-                            },
+                          Obx(
+                            () => CustomTextField(
+                              hint: "Password",
+                              controller: c.passwordController,
+                              textInputAction: TextInputAction.done,
+                              textInputType: TextInputType.visiblePassword,
+                              prefixIcon: const Icon(
+                                Icons.password_rounded,
+                                color: AppColor.dark,
+                              ),
+                              autofillHints: const [AutofillHints.password],
+                              obscureText: c.isPasswordHidden.value,
+                              suffixIcon: IconButton(
+                                onPressed: c.onTogglePassword,
+                                icon: c.isPasswordHidden.value
+                                    ? const Icon(
+                                        Icons.visibility_rounded,
+                                        color: AppColor.dark,
+                                      )
+                                    : const Icon(
+                                        Icons.visibility_off_rounded,
+                                        color: AppColor.dark,
+                                      ),
+                              ),
+                              validator: Validators.checkPasswordField,
+                            ),
                           ),
                           SizedBox(
                             height: height * 0.1,
                           ),
-                          BlocConsumer<LoginBloc, LoginState>(
-                            listener: (context, state) {
-                              if (state.status == LoginStatus.error) {
-                                CustomSnackBar.show(
-                                  context: context,
-                                  customSnackbarType: CustomSnackbarType.error,
-                                  title: "Login failed",
-                                  message: "Login failed. Please try again",
-                                );
-                              } else if (state.status == LoginStatus.success) {
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    DashboardPage.routeName, (route) => false);
-                                CustomSnackBar.show(
-                                  context: context,
-                                  customSnackbarType: CustomSnackbarType.success,
-                                  title: "Login success",
-                                  message: "Logged in successfully",
-                                );
-                              }
-                            },
-                            builder: (context, state) {
-                              if (state.status == LoginStatus.loading) {
-                                return CustomElevatedButton(
-                                  title: "Login",
-                                  onTap: () {},
-                                  size: Size(width * 0.5, 50),
-                                  isLoading: true,
-                                );
-                              }
-
-                              return CustomElevatedButton(
-                                title: "Login",
-                                size: Size(width * 0.5, 50),
-                                onTap: () {
-                                  if (formKey.currentState!.validate()) {
-                                    TextInput.finishAutofillContext();
-                                    context.read<LoginBloc>().add(
-                                          SubmitCredentialEvent(
-                                              userName: _emailController.text,
-                                              password: _passwordController.text),
-                                        );
-                                    // Navigator.of(context).pushNamedAndRemoveUntil(
-                                    //     DashboardPage.routeName, (route) => false);
+                          Obx(
+                            () => CustomElevatedButton(
+                              title: "Login",
+                              size: Size(width * 0.5, 50),
+                              isLoading: c.loading,
+                              onTap: () async {
+                                if (c.formKey.currentState!.validate()) {
+                                  TextInput.finishAutofillContext();
+                                  ResponseData responseData = await c.onLoginSubmit();
+                                  if (responseData.responseStatus == ResponseStatus.success) {
+                                    if (context.mounted) {
+                                      Navigator.of(context).pushNamedAndRemoveUntil(
+                                          DashboardPage.routeName, (route) => false);
+                                      CustomSnackBar.show(
+                                        context: context,
+                                        customSnackbarType: CustomSnackbarType.success,
+                                        title: "Login Success",
+                                      );
+                                    }
+                                  } else {
+                                    if (context.mounted) {
+                                      CustomSnackBar.show(
+                                        context: context,
+                                        customSnackbarType: CustomSnackbarType.error,
+                                        title: "Login Failure",
+                                        message: responseData.message,
+                                      );
+                                    }
                                   }
-                                },
-                              );
-                            },
+                                }
+                              },
+                            ),
                           ),
                           SizedBox(
                             height: height * 0.07,
